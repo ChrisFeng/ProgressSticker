@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgressSticker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow">
+    <WrapPanel>
+        <ScrollViewer HorizontalScrollBarVisibility="Visible" >
+            <ItemsControl ItemsSource="{Binding Path=Points}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <ItemsControl ItemsSource="{Binding Value}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Width="25">
+                                            <Ellipse Width="7" Height="7" Fill="{Binding Value.Color}" Margin="2,2,2,2" />
+                                            <TextBlock Text="{Binding Path=Key}"></TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <Button x:Name="LightButton" Content="變換燈號" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+    </WrapPanel>
 </Window>
